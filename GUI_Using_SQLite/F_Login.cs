@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace GUI_Using_SQLite
+{
+    public partial class F_Login : Form
+    {
+        pb_led form1;
+        DataTable dt = new DataTable();
+        public F_Login(pb_led f)
+        {
+            InitializeComponent();
+            form1 = f;
+        }
+
+        private void F_Login_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btn_login_Click(object sender, EventArgs e)
+        {
+            //label_Username.Text  = Directory.GetCurrentDirectory().Substring(60);
+            string user = tb_Username.Text, pass = tb_Password.Text;
+            if (pass == "" || user == "")
+            {
+                MessageBox.Show("Invalid input.");
+                tb_Username.Focus();
+                return;
+            }
+            dt = DB.consult($"SELECT N_ID, T_USERSTATUS, N_USERLEVEL, T_NAME,T_USERNAME,T_PASSWORD FROM TB_USERS WHERE T_USERNAME='{user}' AND T_PASSWORD='{pass}';");
+            if (dt.Rows.Count == 1)
+            {
+                string userStatus = dt.Rows[0].ItemArray[1].ToString();
+                form1.label_Access.Text = userStatus != "" ? userStatus : "1";
+                form1.label_Username.Text = dt.Rows[0].Field<string>("T_NAME");
+                Globals.loggedIn = true;                
+                form1.pictureBox1.Image = Properties.Resources.greenlight;
+                Globals.userLevel = int.Parse(dt.Rows[0].Field<int>("N_USERLEVEL").ToString());
+                this.Close();
+
+            }
+            else
+            {
+                MessageBox.Show("User not found");
+                tb_Username.Focus();
+                return;
+            }
+
+        }
+    }
+}
