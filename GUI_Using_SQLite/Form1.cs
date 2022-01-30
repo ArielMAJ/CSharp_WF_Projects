@@ -21,7 +21,6 @@ namespace GUI_Using_SQLite
             label_Username.Text = "--";
             Globals.loggedIn = false;
             pictureBox1.Image = Properties.Resources.redlight;
-
         }
 
         private void logInToolStripMenuItem_Click(object sender, EventArgs e)
@@ -34,6 +33,79 @@ namespace GUI_Using_SQLite
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void bancoDeDadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Globals.loggedIn)
+            {
+                if (Globals.userLevel >= 2)
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("Acesso não permitido.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("É necessário ter um usuário logado.");
+            }
+        }
+
+        private void novoUsuárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Globals.loggedIn)
+            {
+                if (Globals.userLevel >= 1)
+                {
+                    F_NovoUsuario f_NovoUsuario = new F_NovoUsuario();
+                    f_NovoUsuario.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Acesso não permitido.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("É necessário ter um usuário logado.");
+            }
+
+        }
+
+        private void gestãoDeUsuáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (Globals.loggedIn)
+            {
+                if (Globals.userLevel >= 1)
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("Acesso não permitido.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("É necessário ter um usuário logado.");
+            }
+        }
+
+        private void novoAlunoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (Globals.loggedIn)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("É necessário ter um usuário logado.");
+            }
         }
     }
 }

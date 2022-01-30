@@ -33,21 +33,29 @@ namespace GUI_Using_SQLite
         {
             //label_Username.Text  = Directory.GetCurrentDirectory().Substring(60);
             string user = tb_Username.Text, pass = tb_Password.Text;
-            if (pass == "" || user == "")
+            if (user == "")
             {
-                MessageBox.Show("Invalid input.");
+                MessageBox.Show("Please enter an username.");
                 tb_Username.Focus();
                 return;
+            }else if (pass == "")
+            {
+                MessageBox.Show("Please enter a password.");
+                tb_Password.Focus();
+                return;
             }
-            dt = DB.consult($"SELECT N_ID, T_USERSTATUS, N_USERLEVEL, T_NAME,T_USERNAME,T_PASSWORD FROM TB_USERS WHERE T_USERNAME='{user}' AND T_PASSWORD='{pass}';");
+            dt = DB.consult($"SELECT N_ID, T_USERSTATUS, N_USERLEVEL, T_NAME,T_USERNAME,T_PASSWORD " +
+                            $"FROM TB_USERS " +
+                            $"WHERE T_USERNAME='{user}' AND T_PASSWORD='{pass}';");
             if (dt.Rows.Count == 1)
             {
                 string userStatus = dt.Rows[0].ItemArray[1].ToString();
-                form1.label_Access.Text = userStatus != "" ? userStatus : "1";
+                
                 form1.label_Username.Text = dt.Rows[0].Field<string>("T_NAME");
                 Globals.loggedIn = true;                
                 form1.pictureBox1.Image = Properties.Resources.greenlight;
                 Globals.userLevel = int.Parse(dt.Rows[0].Field<int>("N_USERLEVEL").ToString());
+                form1.label_Access.Text = userStatus != "" ? userStatus : $"{Globals.userLevel}";
                 this.Close();
 
             }
