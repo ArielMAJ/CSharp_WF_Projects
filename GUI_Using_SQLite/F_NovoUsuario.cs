@@ -23,17 +23,7 @@ namespace GUI_Using_SQLite
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_Salvar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_Novo_Click(object sender, EventArgs e)
         {
             User user = new User();
             user.name = tb_name.Text;
@@ -41,6 +31,33 @@ namespace GUI_Using_SQLite
             user.password = tb_password.Text;
             user.status = cb_status.Text;
             user.userLevel = Convert.ToInt32(Math.Round(NUpDn_userLevel.Value, 0));
+            DB.NewUser(user);
+            btn_Novo_Click(sender, e);
+        }
+
+        private void btn_Novo_Click(object sender, EventArgs e)
+        {
+            tb_name.Clear();
+            tb_password.Clear();
+            tb_username.Clear();
+            cb_status.Text = "";
+            NUpDn_userLevel.Value = 0;
+            tb_name.Focus();
+        }
+
+        private void btn_Fechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            tb_name.Clear();
+            tb_password.Clear();
+            tb_username.Clear();
+            cb_status.Text = "";
+            NUpDn_userLevel.Value = 0;
+            tb_name.Focus();
         }
     }
 }

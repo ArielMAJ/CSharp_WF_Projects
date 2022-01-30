@@ -54,8 +54,8 @@ namespace GUI_Using_SQLite
                 form1.label_Username.Text = dt.Rows[0].Field<string>("T_NAME");
                 Globals.loggedIn = true;                
                 form1.pictureBox1.Image = Properties.Resources.greenlight;
-                Globals.userLevel = int.Parse(dt.Rows[0].Field<int>("N_USERLEVEL").ToString());
-                form1.label_Access.Text = userStatus != "" ? userStatus : $"{Globals.userLevel}";
+                Globals.userLevel = int.Parse(dt.Rows[0].Field<Int32>("N_USERLEVEL").ToString());
+                form1.label_Access.Text = $"{Globals.userLevel}";
                 this.Close();
 
             }

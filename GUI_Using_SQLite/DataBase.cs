@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SQLite;
-
+using GUI_Using_SQLite.Entities;
 
 namespace GUI_Using_SQLite
 {
@@ -62,5 +62,60 @@ namespace GUI_Using_SQLite
                 throw;
             }
         }
+
+        public static void NewUser(User u)
+        {
+            if (UsernameExists(u))
+            {
+                MessageBox.Show("Username já existe.");
+                return;
+            }
+            try
+            {
+                var cmd = DBConnection().CreateCommand();
+                cmd.CommandText = 
+                    "INSERT INTO TB_USERS(" +
+                    "T_NAME, " +
+                    "T_USERNAME, " +
+                    "T_PASSWORD, " +
+                    "T_USERSTATUS, " +
+                    "N_USERLEVEL" +
+                    ") " +
+                    "VALUES(@name,@username,@password,@userstatus,@userlevel)";
+                cmd.Parameters.AddWithValue("@name", u.name);
+                cmd.Parameters.AddWithValue("@username", u.username);
+                cmd.Parameters.AddWithValue("@password", u.password);
+                cmd.Parameters.AddWithValue("@userstatus", u.status);
+                cmd.Parameters.AddWithValue("@userlevel", u.userLevel);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Novo usuário inserido.");
+                DBConnection().Close();
+            }
+            catch( Exception ex)
+            {
+                MessageBox.Show("Erro ao gravar novo usuário.");
+                DBConnection().Close();
+            }
+        }
+        
+        public static bool UsernameExists(User u)
+        {
+            bool exists;
+            SQLiteDataAdapter da = null;
+            DataTable dt = new DataTable();
+
+            var cmd = DBConnection().CreateCommand();
+            cmd.CommandText = "SELECT T_USERNAME " +
+                              "FROM TB_USERS " +
+                             $"WHERE T_USERNAME='{u.username}'";
+            da = new SQLiteDataAdapter(cmd.CommandText, DBConnection());
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
+                exists = true;
+            else
+                exists = false;
+            return exists;
+        }
+
     }
 }

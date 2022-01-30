@@ -188,6 +188,7 @@
             this.btn_Fechar.TabIndex = 3;
             this.btn_Fechar.Text = "Fechar";
             this.btn_Fechar.UseVisualStyleBackColor = true;
+            this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click);
             // 
             // btn_Cancelar
             // 
@@ -197,7 +198,7 @@
             this.btn_Cancelar.TabIndex = 2;
             this.btn_Cancelar.Text = "Cancelar";
             this.btn_Cancelar.UseVisualStyleBackColor = true;
-            this.btn_Cancelar.Click += new System.EventHandler(this.button3_Click);
+            this.btn_Cancelar.Click += new System.EventHandler(this.btn_Cancelar_Click);
             // 
             // btn_Salvar
             // 
