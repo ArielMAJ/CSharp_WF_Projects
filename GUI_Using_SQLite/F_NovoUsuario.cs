@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GUI_Using_SQLite.Entities;
 
 namespace GUI_Using_SQLite
 {
@@ -25,6 +26,21 @@ namespace GUI_Using_SQLite
         private void button3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_Salvar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Novo_Click(object sender, EventArgs e)
+        {
+            User user = new User();
+            user.name = tb_name.Text;
+            user.username = tb_username.Text;
+            user.password = tb_password.Text;
+            user.status = cb_status.Text;
+            user.userLevel = Convert.ToInt32(Math.Round(NUpDn_userLevel.Value, 0));
         }
     }
 }

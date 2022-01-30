@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tb_name = new System.Windows.Forms.TextBox();
+            this.tb_username = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tb_password = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.cb_status = new System.Windows.Forms.ComboBox();
+            this.NUpDn_userLevel = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@
             this.btn_Cancelar = new System.Windows.Forms.Button();
             this.btn_Salvar = new System.Windows.Forms.Button();
             this.btn_Novo = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUpDn_userLevel)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,19 +59,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome";
             // 
-            // textBox1
+            // tb_name
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(252, 23);
-            this.textBox1.TabIndex = 1;
+            this.tb_name.Location = new System.Drawing.Point(12, 25);
+            this.tb_name.Name = "tb_name";
+            this.tb_name.Size = new System.Drawing.Size(252, 23);
+            this.tb_name.TabIndex = 1;
             // 
-            // textBox2
+            // tb_username
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 77);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(123, 23);
-            this.textBox2.TabIndex = 3;
+            this.tb_username.Location = new System.Drawing.Point(12, 77);
+            this.tb_username.Name = "tb_username";
+            this.tb_username.Size = new System.Drawing.Size(123, 23);
+            this.tb_username.TabIndex = 3;
             // 
             // label2
             // 
@@ -82,12 +82,12 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Username";
             // 
-            // textBox3
+            // tb_password
             // 
-            this.textBox3.Location = new System.Drawing.Point(141, 77);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(123, 23);
-            this.textBox3.TabIndex = 5;
+            this.tb_password.Location = new System.Drawing.Point(141, 77);
+            this.tb_password.Name = "tb_password";
+            this.tb_password.Size = new System.Drawing.Size(123, 23);
+            this.tb_password.TabIndex = 5;
             // 
             // label3
             // 
@@ -98,30 +98,30 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Senha";
             // 
-            // comboBox1
+            // cb_status
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cb_status.FormattingEnabled = true;
+            this.cb_status.Items.AddRange(new object[] {
             "A",
             "B",
             "D"});
-            this.comboBox1.Location = new System.Drawing.Point(12, 130);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(39, 23);
-            this.comboBox1.TabIndex = 6;
+            this.cb_status.Location = new System.Drawing.Point(12, 130);
+            this.cb_status.Name = "cb_status";
+            this.cb_status.Size = new System.Drawing.Size(39, 23);
+            this.cb_status.TabIndex = 6;
             // 
-            // numericUpDown1
+            // NUpDn_userLevel
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(12, 177);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.NUpDn_userLevel.Location = new System.Drawing.Point(12, 177);
+            this.NUpDn_userLevel.Maximum = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(40, 23);
-            this.numericUpDown1.TabIndex = 7;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.NUpDn_userLevel.Name = "NUpDn_userLevel";
+            this.NUpDn_userLevel.Size = new System.Drawing.Size(40, 23);
+            this.NUpDn_userLevel.TabIndex = 7;
+            this.NUpDn_userLevel.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label4
             // 
@@ -207,6 +207,7 @@
             this.btn_Salvar.TabIndex = 1;
             this.btn_Salvar.Text = "Salvar";
             this.btn_Salvar.UseVisualStyleBackColor = true;
+            this.btn_Salvar.Click += new System.EventHandler(this.btn_Salvar_Click);
             // 
             // btn_Novo
             // 
@@ -216,6 +217,7 @@
             this.btn_Novo.TabIndex = 0;
             this.btn_Novo.Text = "Novo";
             this.btn_Novo.UseVisualStyleBackColor = true;
+            this.btn_Novo.Click += new System.EventHandler(this.btn_Novo_Click);
             // 
             // F_NovoUsuario
             // 
@@ -228,13 +230,13 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.NUpDn_userLevel);
+            this.Controls.Add(this.cb_status);
+            this.Controls.Add(this.tb_password);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tb_username);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tb_name);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -242,7 +244,7 @@
             this.Name = "F_NovoUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Novo Usuário";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUpDn_userLevel)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -252,13 +254,13 @@
         #endregion
 
         private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox tb_name;
+        private TextBox tb_username;
         private Label label2;
-        private TextBox textBox3;
+        private TextBox tb_password;
         private Label label3;
-        private ComboBox comboBox1;
-        private NumericUpDown numericUpDown1;
+        private ComboBox cb_status;
+        private NumericUpDown NUpDn_userLevel;
         private Label label4;
         private Label label5;
         private Label label6;
